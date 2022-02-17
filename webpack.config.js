@@ -9,22 +9,18 @@ module.exports = {
   module: {
     rules: [
       {
+        test: /\.tsx?$/,
+        exclude: /node_modules/,
+        use: {
+          loader: 'ts-loader',
+        },
+      },
+      {
         test: /\.js$/,
         exclude: /node_modules/,
         use: {
           loader: 'babel-loader',
         },
-      },
-      {
-        test: /\.(png|jpg|gif)$/i,
-        use: [
-          {
-            loader: 'url-loader',
-            options: {
-              limit: false,
-            },
-          },
-        ],
       },
       {
         test: /\.html$/,
@@ -41,6 +37,9 @@ module.exports = {
         ],
       },
     ],
+  },
+  resolve: {
+    extensions: ['.tsx', '.ts', '.js'],
   },
   plugins: [
     new HtmlWebPackPlugin({
